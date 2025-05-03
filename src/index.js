@@ -4,7 +4,15 @@ dotenv.config({
     path:"./env"
 })
 
-connect_DB()
+connect_DB().then(
+    ()=>{
+        app.listen(process.env.PORT || 8000, ()=>{
+            console.log(`serveris running at :${process.env.PORT}`)
+        })
+    }
+).catch((err)=>{
+    console.log("connection failed",err)
+})
 
 
 
